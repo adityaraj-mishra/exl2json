@@ -1,36 +1,36 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
     <title>exl2json</title>
 </head>
-<body>
     <header>
-        <div id="nav-bar">
-            <ul>
-                <li>Home</li>
-                <li>Refresh</li>
-                <li>Contact Developer</li>
-            </ul>
-            <button>Download File</button>
+        <div class="navbar">
+            <a class="link">Refresh</a>
+            <a class="link">Contact Developer</a>
+            <a class="link" href="{{path}}" download>Download</a>
         </div>
     </header>
-    <section>
-        <div id="main">
-            <div id="drop-box">
-                <form method="POST" enctype = "multipart/form-data">
-                    {% csrf_token %}
-                    <input type="file" name="file" accept=".xlsx, .xls, .csv">
-                    <br>
-                    <button type="submit">Upload</button>
-                </form>
-            </div>
-            <div id="output-field">
-                {{output}}
-            </div>
+    <div class="content">
+        <div id="drop-box">
+            <form method="POST" enctype = "multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="file" accept=".xlsx, .xls, .csv">
+                <br>
+                <br>
+                <button type="submit">Upload</button>
+            </form>
         </div>
-    </section>
+        <br>
+        <br>
+        <div id="output-field">
+            {{output}}
+        </div>
+    </div>
 </body>
 </html>

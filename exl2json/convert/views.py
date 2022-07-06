@@ -1,7 +1,5 @@
-from argparse import RawDescriptionHelpFormatter
-from django.http import HttpResponse
+import os
 from django.shortcuts import render
-import openpyxl
 import pandas as pd
 import pip
 pip.main(["install", "openpyxl"])
@@ -19,4 +17,8 @@ def index(request):
         df = pd.read_csv('files/record.csv')
         df.to_json('json/record.json', orient='records')
         output = 'Your File Converted to Json successfully !'
-    return render(request, 'index.html')
+        print(output)
+        path = 'json/record.json'
+    if request.method == 'GET':
+        os.remove(path)
+    return render(request, 'index.html',{'path':path,'output':output})
